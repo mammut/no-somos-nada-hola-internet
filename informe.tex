@@ -156,6 +156,20 @@
         \caption{traceroute a http://wikipedia.com}
     \end{figure}
 
+    \begin{figure}[H]
+        \centering
+        \label{fig:embassy1}
+        \includegraphics[width=346px]{img/{5.www.chile.embassy.gov.au}.png}
+        \caption{traceroute a http://www.chile.embassy.gov.au - Parte I}
+    \end{figure}
+
+    \begin{figure}[H]
+        \centering
+        \label{fig:embassy2}
+        \includegraphics[width=346px]{img/{6.www.chile.embassy.gov.au}.png}
+        \caption{traceroute a http://www.chile.embassy.gov.au - Parte II}
+    \end{figure}
+
     Los paquetes toman diferentes rutas según el algoritmo de vector distancia. Cada \textit{router} sabe los mejores caminos a sus vecinos. Es por eso que en la mayoría de los casos a servidores internacionales los paquetes van a España para luego devolverse a USA.
 
     Chile se conecta internacionalmente utilizando Cables Submarinos. Este se conecta primero a Brazil el que tiene un enlace con Europa \footnote{\href{http://www.submarinecablemap.com/\#/submarine-cable/brazil-europe}{http://www.submarinecablemap.com/\#/submarine-cable/brazil-europe}}. Luego los paquetes pueden llegar fácilmente a USA como es el caso de cime.cl y wikipedia.com. En el caso de http://www.chile.embassy.gov.au/ los paquetes primero van a Brazil, luego España, USA, cruzan a Asia hasta llegar a Japón, En este punto el traceroute deja de funcionar, probablemente es bloqueado por el host japones.
