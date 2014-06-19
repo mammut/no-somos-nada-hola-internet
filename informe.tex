@@ -14,9 +14,7 @@
 \usepackage{courier}
 \usepackage{enumitem}
 \usepackage{hyperref}
-
-\setenumerate[1]{label=\arabic*)}
-\setenumerate[2]{label=(\alph*)}
+\usepackage{float}
 
 % Margenes
 \topmargin=-0.45in
@@ -29,15 +27,13 @@
 % Header y footer
 \pagestyle{fancy}
 \lhead{UTFSM - DI}
-\chead{\tareaRamo\ (\tareaProfesor): \tareaTitulo} % Centro
+\chead{\tareaRamo\ (\tareaProfesor): \tareaTitulo}
 \rhead{\firstxmark}
 \lfoot{\lastxmark}
 \cfoot{}
-\rfoot{Página\ \thepage\ de\ \protect\pageref{LastPage}} % Pagina
+\rfoot{Página\ \thepage\ de\ \protect\pageref{LastPage}}
 \renewcommand\headrulewidth{0.4pt}
 \renewcommand\footrulewidth{0.4pt}
-
-\setlength\parindent{0pt} % Eliminar la indentación
 
 
 %----------------------------------------------------------------------------------------
@@ -132,32 +128,53 @@
 
     A continuación se muestra una serie de pantallazos mostrando los resultados entregados por Open Visual Traceroute
 
-    \begin{figure}[ht]
+    \begin{figure}[H]
         \centering
         \label{fig:moodle}
-        \includegraphics[width=346px]{img/{1.moodle.inf.utfsm.cl}.png}
+        \includegraphics[width=350px]{img/{1.moodle.inf.utfsm.cl}.png}
         \caption{traceroute a http://moodle.inf.utfsm.cl}
     \end{figure}
 
-    \begin{figure}[ht]
+    \begin{figure}[H]
         \centering
         \label{fig:google}
-        \includegraphics[width=346px]{img/{2.google.cl}.png}
+        \includegraphics[width=350px]{img/{2.google.cl}.png}
         \caption{traceroute a http://google.cl}
     \end{figure}
 
-    \begin{figure}[ht]
+    \begin{figure}[H]
         \centering
         \label{fig:cime}
         \includegraphics[width=346px]{img/{3.cime.cl}.png}
         \caption{traceroute a http://cime.cl}
     \end{figure}
 
-    \begin{figure}[ht]
+    \begin{figure}[H]
         \centering
         \label{fig:wikipedia}
         \includegraphics[width=346px]{img/{4.wikipedia.com}.png}
         \caption{traceroute a http://wikipedia.com}
     \end{figure}
+
+    Los paquetes toman diferentes rutas según el algoritmo de vector distancia. Cada \textit{router} sabe los mejores caminos a sus vecinos. Es por eso que en la mayoría de los casos a servidores internacionales los paquetes van a España para luego devolverse a USA.
+
+    Chile se conecta internacionalmente utilizando Cables Submarinos. Este se conecta primero a Brazil el que tiene un enlace con Europa \footnote{\href{http://www.submarinecablemap.com/\#/submarine-cable/brazil-europe}{http://www.submarinecablemap.com/\#/submarine-cable/brazil-europe}}. Luego los paquetes pueden llegar fácilmente a USA como es el caso de cime.cl y wikipedia.com. En el caso de http://www.chile.embassy.gov.au/ los paquetes primero van a Brazil, luego España, USA, cruzan a Asia hasta llegar a Japón, En este punto el traceroute deja de funcionar, probablemente es bloqueado por el host japones.
+
+    En el caso de servidores nacionales como \href{http://moodle.inf.utfsm.cl/}{http://moodle.inf.utfsm.cl/} y \href{http://google.cl/}{http://google.cl/} se nota una diferencia entre la cantidad de viajes que realizan los paquetes. Para llegar a google.cl solo debe pasar por 2 hosts, a diferencia de moodle que visita 10 hosts para llegar a su destino. Se podría decir entonces que la rapidez que google es superior pues es un enlace mas directo.
+
+    Los enlaces internacionales de Chile son:
+
+    \begin{enumerate}
+        \item South American Crossing (SAC)/Latin American Nautilus (LAN) (Valparaíso)
+        \item Panamericano (PanAm) (Arica)
+        \item South America-1 (SAm-1) (Arica y Valparaíso)
+    \end{enumerate}
+
+    \section*{Referencias}
+
+        \begin{enumerate}
+            \item \href{http://goo.gl/QFhvU8}{Submarine Cable Landing Directory}
+        \end{enumerate}
+    
 
 \end{document}
