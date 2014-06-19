@@ -16,7 +16,7 @@ class Node(object):
         self.name = name
 
     def to_string(self):
-        response += "Nodo {}:[ ".format(self.name)
+        response = "Nodo {}:[ ".format(self.name)
         for key in self.distance:
             distance = self.distance[key]
             next = self.next[key]
@@ -74,7 +74,7 @@ class Graph(object):
         """
         response = ""
         for node in self.nodes:
-            response += node.to_string()
+            response += self.nodes[node].to_string() + "\n"
         return response
 
 if __name__ == "__main__":
