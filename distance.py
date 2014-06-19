@@ -1,6 +1,8 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
+from operator import itemgetter
+
 """
 Enrutamiento de Vector-Distancia con el algoritmo de Bellman-Ford
 """
@@ -17,7 +19,7 @@ class Node(object):
 
     def to_string(self):
         response = "Nodo {}:[ ".format(self.name)
-        for key in self.distance:
+        for key in sorted(self.distance):
             distance = self.distance[key]
             next = self.next[key]
             response += "{}: {}, {};\t".format(
@@ -73,7 +75,7 @@ class Graph(object):
         de cada nodo. Se usa para comparar.
         """
         response = ""
-        for node in self.nodes:
+        for node in sorted(self.nodes):
             response += self.nodes[node].to_string() + "\n"
         return response
 
