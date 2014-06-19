@@ -1,15 +1,42 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
+"""
+Enrutamiento de Vector-Distancia con el algoritmo de Bellman-Ford
+"""
+
 
 class Node(object):
+    """
+    Representa un nodo dentro del grafo
+    """
     def __init__(self, name):
         self.distance = {}
         self.next = {}
         self.name = name
 
+    def to_string(self):
+        response += "Nodo {}:[ ".format(self.name)
+        for key in self.distance:
+            distance = self.distance[key]
+            next = self.next[key]
+            response += "{}: {}, {};\t".format(
+                key,
+                "∞" if distance == float('inf') else distance,
+                "∅" if next is None else next)
+        response += "]"
+        return response
+
 
 class Graph(object):
+    """
+    Reprentación del Grafo.
+
+    El API del grafo con que se inicializa tiene que ser la siguiente:
+    iter(graph) itera sobre cada nodo del grafo
+    iter(graph[u]) itera sobre cada vecino del nodo u
+    graph[u][v] entrega la distancia entre el nodo u y v
+    """
     def __init__(self, graph):
         self.graph = graph
         self.nodes = {}
@@ -20,30 +47,34 @@ class Graph(object):
                 self.nodes[node].next[other] = None
             self.nodes[node].distance[self.nodes[node].name] = 0
 
-    def relax(self, node, neighbour, obj):
+    def measure(self, node, neighbour, obj):
+        """
+        Mide la distancia entre nodo y su vecino y
+        la almacena en la representación del nodo
+        """
         new_distance = obj.distance[node] + self.graph[node][neighbour]
         if obj.distance[neighbour] > new_distance:
             obj.distance[neighbour] = new_distance
             obj.next[neighbour] = node if node != obj.name else None
 
     def step(self):
+        """
+        Itera sobre todos los nodos del grafo y hace un
+        intercambio de mediciones entre los nodos una vez
+        """
         for node in self.nodes:
             for u in self.graph:
                 for v in self.graph[u]:
-                    self.relax(u, v, self.nodes[node])
+                    self.measure(u, v, self.nodes[node])
 
     def node_string(self):
+        """
+        Devuelve una cadena con la representación en pantalla
+        de cada nodo. Se usa para comparar.
+        """
         response = ""
         for node in self.nodes:
-            response += "Nodo {}:[ ".format(node)
-            for key in self.graph:
-                distance = self.nodes[node].distance[key]
-                next = self.nodes[node].next[key]
-                response += "{}: {}, {};\t".format(
-                    key,
-                    "∞" if distance == float('inf') else distance,
-                    "∅" if next is None else next)
-            response += "]\n"
+            response += node.to_string()
         return response
 
 if __name__ == "__main__":
