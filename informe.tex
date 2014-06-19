@@ -1,0 +1,163 @@
+%----------------------------------------------------------------------------------------
+%	Paquetes y configuración
+%----------------------------------------------------------------------------------------
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,es-lcroman]{babel}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{extramarks}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{courier}
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+\setenumerate[1]{label=\arabic*)}
+\setenumerate[2]{label=(\alph*)}
+
+% Margenes
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+% Header y footer
+\pagestyle{fancy}
+\lhead{UTFSM - DI}
+\chead{\tareaRamo\ (\tareaProfesor): \tareaTitulo} % Centro
+\rhead{\firstxmark}
+\lfoot{\lastxmark}
+\cfoot{}
+\rfoot{Página\ \thepage\ de\ \protect\pageref{LastPage}} % Pagina
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+\setlength\parindent{0pt} % Eliminar la indentación
+
+
+%----------------------------------------------------------------------------------------
+%	Inclusión de python con systax highlight
+%----------------------------------------------------------------------------------------
+\renewcommand\lstlistingname{Script}
+\renewcommand\lstlistlistingname{Scripts}
+
+\definecolor{MyDarkGreen}{rgb}{0.0,0.4,0.0} % This is the color used for comments
+\lstloadlanguages{Python}
+\lstset{language=Python, % Usar Python
+        frame=single, % Single frame around code
+        basicstyle=\small\ttfamily, % Use small true type font
+        keywordstyle=[1]\color{BlueViolet}\bf, % Funciones
+        keywordstyle=[2]\color{Purple}, % Argumentos
+        keywordstyle=[3]\color{Blue}\underbar,
+        identifierstyle=,                               
+        commentstyle=\usefont{T1}{pcr}{m}{sl}\color{MyDarkGreen}\small,
+        stringstyle=\color{Purple},
+        showstringspaces=false,
+        tabsize=5, % 5 Tabs
+        morekeywords={rand,},
+        morekeywords=[2]{on, off, interp},
+        morekeywords=[3]{y, range},
+        morecomment=[l][\color{Blue}]{...},
+        numbers=left,
+        firstnumber=1,
+        numberstyle=\tiny\color{Gray},
+        stepnumber=1
+}
+
+
+\newcommand{\python}[2]{
+\begin{itemize}
+\item[]\lstinputlisting[language=Python,caption=#2,label=#1]{#1.py}
+\end{itemize}
+}
+
+%----------------------------------------------------------------------------------------
+%	Meta Información
+%----------------------------------------------------------------------------------------
+\newcommand{\tareaTitulo}{Tarea\ 3} % titulo del informe
+\newcommand{\tareaFecha}{\today} % Fecha
+\newcommand{\tareaRamo}{Redes de Computadores} % Ramo
+\newcommand{\tareaProfesor}{Oscar\ Encina} % Profesor
+\newcommand{\tareaAlumnoUno}{Juan\ Pablo\ Escalona\ G.} % Nombre Alumno 1
+\newcommand{\tareaAlumnoDos}{Pablo\ Albornoz\ N.} % Nombre Alumno 2
+\newcommand{\tareaEmailUno}{juan.escalonag@alumnos.usm.cl} % Email Alumno 1
+\newcommand{\tareaEmailDos}{pablo.albornoz@alumnos.usm.cl} % Email Alumno 2
+\newcommand{\tareaRolUno}{201073515-k} % Rut alumno 1
+\newcommand{\tareaRolDos}{201073560-5} % Rut Alumno 2
+
+%----------------------------------------------------------------------------------------
+%	Título
+%----------------------------------------------------------------------------------------
+\title{
+    \vspace{2in}
+    \textmd{\textbf{\tareaRamo:\ \tareaTitulo}}\\
+    \normalsize\vspace{0.1in}\small{\tareaFecha}\\
+    \vspace{0.1in}\large{\textit{\tareaProfesor}}
+    \vspace{3in}
+}
+
+\author{
+    \textbf{\tareaAlumnoUno} \\
+    \small{\tareaEmailUno} \\
+    \small{\tareaRolUno}
+    \and
+    \textbf{\tareaAlumnoDos} \\
+    \small{\tareaEmailDos} \\
+    \small{\tareaRolDos}}
+\date{}
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle
+
+    %----------------------------------------------------------------------------------------
+    % Índice
+    %----------------------------------------------------------------------------------------
+    % \setcounter{tocdepth}{3}
+    % \newpage
+    % \tableofcontents
+    \newpage
+
+    %----------------------------------------------------------------------------------------
+    % Pregunta 1
+    %----------------------------------------------------------------------------------------
+    \section*{Pregunta 1. Open Visual Traceroute}
+
+    A continuación se muestra una serie de pantallazos mostrando los resultados entregados por Open Visual Traceroute
+
+    \begin{figure}[ht]
+        \centering
+        \label{fig:moodle}
+        \includegraphics[width=346px]{img/{1.moodle.inf.utfsm.cl}.png}
+        \caption{traceroute a http://moodle.inf.utfsm.cl}
+    \end{figure}
+
+    \begin{figure}[ht]
+        \centering
+        \label{fig:google}
+        \includegraphics[width=346px]{img/{2.google.cl}.png}
+        \caption{traceroute a http://google.cl}
+    \end{figure}
+
+    \begin{figure}[ht]
+        \centering
+        \label{fig:cime}
+        \includegraphics[width=346px]{img/{3.cime.cl}.png}
+        \caption{traceroute a http://cime.cl}
+    \end{figure}
+
+    \begin{figure}[ht]
+        \centering
+        \label{fig:wikipedia}
+        \includegraphics[width=346px]{img/{4.wikipedia.com}.png}
+        \caption{traceroute a http://wikipedia.com}
+    \end{figure}
+
+\end{document}
