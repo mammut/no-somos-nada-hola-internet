@@ -79,6 +79,29 @@ class Graph(object):
             response += self.nodes[node].to_string() + "\n"
         return response
 
+    def break_link(self, one, two):
+        if one in self.graph:
+            if two in self.graph[one]:
+                del self.graph[one][two]
+        if two in self.graph:
+            if one in self.graph[two]:
+                del self.graph[two][one]
+        if one in self.nodes:
+            if two in self.nodes[one].distance:
+                self.nodes[one].distance[two] = float('inf')
+                self.nodes[one].next[two] = None
+        if two in self.nodes:
+            if one in self.nodes[two].distance:
+                self.nodes[two].distance[one] = float('inf')
+                self.nodes[two].next[one] = None
+        for node in self.nodes:
+            if self.nodes[node].next[one] == two:
+                self.nodes[node].distance[one] = float('inf')
+                self.nodes[node].next[one] = None
+            elif self.nodes[node].next[two] == one:
+                self.nodes[node].distance[two] = float('inf')
+                self.nodes[node].next[two] = None
+
 if __name__ == "__main__":
     graph = {
         'A': {'B': 1, 'G': 4, 'I': 10},
@@ -98,12 +121,20 @@ if __name__ == "__main__":
     last = g.node_string()
     print last
     print "Comenzando Enrutamiento..."
-    for i in range(len(g.graph)-1):
+    breaking = False
+    i = 0
+    while True:
         g.step()
-        if last == g.node_string():
-            print "Convergencia completa"
-            exit()
-        else:
-            last = g.node_string()
-        print "Paso", i+1
+        now = g.node_string()
+        if last == now:
+            if not breaking:
+                print "Primera convergencia"
+                g.break_link('H', 'I')
+                now = g.node_string()
+                print "Nos acaban de informar que un transatlántico cortó el enlace H-I, recalculando..."
+                breaking = True
+            else:
+                break
+        last = now
         print last
+    print "Convergencia final"
