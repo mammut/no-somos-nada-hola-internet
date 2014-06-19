@@ -1,8 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-from operator import itemgetter
-
 """
 Enrutamiento de Vector-Distancia con el algoritmo de Bellman-Ford
 """
