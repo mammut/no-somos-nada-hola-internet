@@ -78,6 +78,10 @@ class Graph(object):
         return response
 
     def break_link(self, one, two):
+        """
+        Rompe el enlace entre one y two, para luego recalcular
+        las distancias.
+        """
         if one in self.graph:
             if two in self.graph[one]:
                 del self.graph[one][two]
@@ -129,7 +133,17 @@ if __name__ == "__main__":
                 print "Primera convergencia"
                 g.break_link('H', 'I')
                 now = g.node_string()
-                print "Nos acaban de informar que un transatlántico cortó el enlace H-I, recalculando..."
+                #   H ------/  /------ I
+                #.  o ..                  
+                #    o . o o.o                
+                #         ...oo               
+                #           __[]__            
+                #        __|_o_o_o\__         
+                #        \""""""""""/         
+                #         \. ..  . /          
+                #    ^^^^^^^^^^^^^^^^^^^^ 
+                print ("Nos acaban de informar que un transatlántico"
+                       " cortó el enlace H-I, recalculando...")
                 breaking = True
             else:
                 break

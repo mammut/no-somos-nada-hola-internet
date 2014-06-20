@@ -35,6 +35,7 @@
 \renewcommand\headrulewidth{0.4pt}
 \renewcommand\footrulewidth{0.4pt}
 
+\DeclareUnicodeCharacter{221E}{\ensuremath{\ge}}
 
 %----------------------------------------------------------------------------------------
 %	Inclusión de python con systax highlight
@@ -62,7 +63,20 @@
         numbers=left,
         firstnumber=1,
         numberstyle=\tiny\color{Gray},
-        stepnumber=1
+        stepnumber=1,
+        literate={á}{{\'a}}1
+                 {ã}{{\~a}}1
+                 {é}{{\'e}}1
+                 {ó}{{\'o}}1
+                 {í}{{\'i}}1
+                 {ñ}{{\~n}}1
+                 {¡}{{!`}}1
+                 {¿}{{?`}}1
+                 {ú}{{\'u}}1
+                 {Í}{{\'I}}1
+                 {Ó}{{\'O}}1
+                 {∞}{{$\infty$}}1
+                 {∅}{{$\emptyset$}}1
 }
 
 
@@ -184,11 +198,24 @@
         \item South America-1 (SAm-1) (Arica y Valparaíso)
     \end{enumerate}
 
+    \section*{Preguntas 2 y 3. }
+    
+        \python{distance}{Distance}    
+
+        En el método \textit{break\_link()} del objeto \textit{graph} definido en la línea 80 del \hyperref[distance]{Codigo python Distance} se implementa la pregunta 3. Solo se actualizan los vecinos de H e I. A continuacion se analiza un problema con el algoritmo vector distancia.
+
+        Es importante destacar que en la pregunta 3, al eliminar el enlace entre H e I, se debe re-calcular todos los costos que utilizaban este enlace. Pero por la forma asíncrona del algoritmo se puede caer en un estado de \textit{slow convergence to infinity} (convergencia lenta al infinito.) Pues el nuevo enlace tiene valor $\infty$ y al momento de re calcular las distancias, se compara con el estimado que se tenia anteriormente. Se genera el problema entonces de seleccionar el mínimo como: $min(a, \infty)$ donde $a$ es el valor que se tenia previo a la eliminación del enlace.Obviamente se utiliza $a$ por se menor, pero esto induce a un error pues se esta utilizando el antiguo valor cuando el enlace estaba disponible.
+
+        Soluciones encontradas para el slow convergence to infinity:
+
+        http://intronetworks.cs.luc.edu/1/html/routing.html\#slow-convergence-fixes
+
+        
+
     \section*{Referencias}
 
         \begin{enumerate}
             \item \href{http://goo.gl/QFhvU8}{Submarine Cable Landing Directory}
         \end{enumerate}
-    
 
 \end{document}
